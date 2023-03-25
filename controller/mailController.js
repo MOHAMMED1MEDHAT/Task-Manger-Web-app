@@ -5,6 +5,8 @@ const jwt=require("jsonwebtoken");
 
 const mailSend=async(req,res)=>{
     try{
+        //test
+        // console.log(req.header("x-auth-token"));
         const tokenPayload=jwt.verify(req.header("x-auth-token"),"thisthesecrettokenkey");
 
         let ownerExists=await Task.findOne({owner:tokenPayload.userId})
@@ -25,7 +27,7 @@ const mailSend=async(req,res)=>{
         let user=await User.findById(tokenPayload.userId).exec()
         let task=await Task.findOne({owner:user._id});
 
-        send_mail(task.tasks,user.emaail);
+        send_mail(task.tasks,user.email);
 
         res.status(200).send({status:"email sent"});
     }catch(err){

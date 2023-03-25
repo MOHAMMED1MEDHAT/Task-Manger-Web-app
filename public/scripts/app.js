@@ -39,10 +39,12 @@ const addUncheckedTasks=(data)=>{
 
 //TODO:finish the mail sending functionallity
 const sendmail=(url,data)=>{
+    //test
+    // console.log(document.cookie.split(";")[1].split("=")[1])
     return fetch(url,{
         method:"POST",
         headers:{
-            "x-auth-token":document.cookie.split("=")[1],
+            "x-auth-token":document.cookie.split(";")[1].split("=")[1],
             "Content-Type":"application/json"
         },
         body:JSON.stringify(data)
@@ -60,7 +62,7 @@ const sendMial=()=>{
     });
 };
 //TODO: make time: 6 hours
-setInterval(sendMial,1000);
+setInterval(sendMial,21600000);
 
 submitTxt.addEventListener("click",(event)=>{
     let val=textVal.value;
