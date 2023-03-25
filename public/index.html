@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+        <title>My Dail Tasks</title>
+
+        <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: inherit;
+        }
+
+        html {
+            font-size: 62.5%;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            padding: 5rem 5rem 10rem;
+            line-height: 1.7;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #555;
+            min-height: 100vh;
+            background: linear-gradient(to bottom right, #001 , #00e3ae);
+        }
+
+        h1 {
+            font-family: 'Megrim', sans-serif;
+            font-size: 6rem;
+            color: white;
+            transform: skewY(-5deg);
+            text-align: center;
+            position: relative;
+            word-spacing: 3px;
+        }
+
+        h1::before {
+            content: '';
+            display: block;
+            height: 65%;
+            width: 49%;
+            position: absolute;
+            top: 105%;
+            left: 50%;
+            background: linear-gradient(to bottom, #9be15d, #00e3ae);
+            opacity: 0.8;
+            z-index: -1;
+            transform: skewY(370deg) translate(-50%, -50%);
+        }
+
+        button{
+            background: linear-gradient(to bottom right, #79e17b , #00e3ae);
+            border-color:rgb(0, 227, 174) ;
+            font-family: 'Megrim', sans-serif;
+            color: white;
+            font-size: 3.25rem;
+        }
+
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+
+        #Add{
+            position: fixed;
+            bottom: 0;
+            left: 800px;
+            width: 100px;
+            border: 3px solid #00e3ae;
+            opacity: 0.8;
+        }
+
+        #Add:hover{
+            opacity: 1;
+        }
+
+        #Delete{
+            position: fixed;
+            bottom: 0;
+            left: 900px;
+            width: 100px;
+            border: 3px solid #00e3ae;
+            opacity: 0.8;
+        }
+
+        #Delete:hover{
+            opacity: 1;
+        }
+
+        .container {
+            width: 95rem;
+            margin: 0 auto;
+        }
+
+        .cards-container {
+            margin-top: 8rem;
+        }
+
+        .card {
+            width: 95rem;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 2rem 6rem 1rem rgba(0, 0, 0, 0.15);
+            margin-bottom: 5rem;
+            transform: skewX(-20deg);
+            display: flex;
+            transition: all 0.5s;
+        }
+
+        .card-small{
+            height: 30%;
+            width: 10%;
+            background: #00e3ae ;
+            box-shadow: 0 2rem 6rem 1rem rgba(0, 0, 0, 0.15); 
+            transform: skewX(-20deg);
+            display: flex;
+            transition: all 0.5s;
+        }
+
+        .cardDeleted{
+            display: none;
+        }
+
+        .card__title-box {
+            background: linear-gradient(to bottom, #9be15d, #00e3ae);
+            margin-right: auto;
+            display: flex;
+            align-items: center;
+            padding: 0 3rem;
+        }
+
+        .card__title {
+            font-family: 'Megrim', sans-serif;
+            color: white;
+            font-size: 3.25rem;
+            transform: skewX(20deg);
+        }
+
+        .card__details {
+            display: flex;
+        }
+
+        .card__detail-box {
+            align-self: stretch;
+            border-right: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+        }
+
+        .card__detail-box:last-child {
+            border: none;
+        }
+
+        .card__detail {
+            font-weight: 400;
+            font-size: 1.8rem;
+            transform: skewX(20deg);
+            padding: 1.75rem;
+        }
+
+        .card__detail--organic {
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 1.9rem;
+            background-image: linear-gradient(to right, #9be15d, #00e3ae);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .card__detail--price {
+            font-weight: 900;
+            font-size: 1.9rem;
+        }
+
+        .card__link:link,
+        .card__link:visited {
+            flex: 0 0 auto;
+            background-color: #79e17b;
+            color: white;
+            font-size: 1.6rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 2.5rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .card__link:hover,
+        .card__link:active {
+            background-color: #9be15d;
+        }
+
+        .card__link span {
+            transform: skewX(20deg);
+        }
+
+        .card:hover {
+            transform: skewX(-20deg) scale(1.08);
+            box-shadow: 0 3rem 8rem 2rem rgba(0, 0, 0, 0.15);
+        }
+
+        .not-organic {
+            display: none;
+        }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>My Daily Tasks</h1>
+            <div class="cards-container">
+                <figure class="card-small">
+                    <div>
+                        <button id="Add" >Add</button>
+                    </div>
+                </figure>
+                <figure class="card-small">
+                    <div>
+                        <button id="Delete" >Delete</button>
+                    </div>
+                </figure>
+                <figure class="card" id="card-1">
+                <div class="card__title-box">
+                    <h2 class="card__title" id="task-1"><input id="text-1" placeholder="Type your task and then click on done." type="text" size="80%"style="border-color: #00e3ae;"></h2>
+                </div>
+                <a class="card__link" id="card-submitTxt-1" href="#">
+                    <button id="Done-1" >Done <input id="checkBox-1" type="checkbox"></input> </button>
+                </a>
+                </figure>
+            </div>
+        </div>
+    <script src="./scripts/app.js"></script>
+    </body>
+    </html>
