@@ -17,5 +17,13 @@
   "description": "tasks mailing service",
   "main": "server.js",
   "author": "M.medhat",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MOHAMMED1MEDHAT/Task-Manger-Web-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MOHAMMED1MEDHAT/Task-Manger-Web-app/issues"
+  },
+  "homepage": "https://github.com/MOHAMMED1MEDHAT/Task-Manger-Web-app#readme"
 }
