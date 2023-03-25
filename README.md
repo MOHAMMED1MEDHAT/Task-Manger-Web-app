@@ -1,6 +1,6 @@
 # Task-Manger-Web-app:
 
-##this app is to make your daily tasks easier to deal with .
+### this app is to make your daily tasks easier to deal with .
 
 it do the the following:
 1. tasks manipulation
