@@ -41,7 +41,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/main", (req, res) => {
-    res.sendFile("public/index.html");
+    res.sendFile(__dirname + "./public/index.html");
 });
 
 app.get("/login", (req, res) => {
