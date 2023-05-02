@@ -37,11 +37,11 @@ app.listen(port, () => {
 });
 
 app.get("/", (req, res) => {
-    res.sendFile("public/index.html");
+    res.sendFile(__dirname + "/public/signup.html");
 });
 
 app.get("/reg", (req, res) => {
-    res.sendFile(__dirname + "/public/signup.html");
+    res.sendFile("public/index.html");
 });
 
 app.get("/login", (req, res) => {
