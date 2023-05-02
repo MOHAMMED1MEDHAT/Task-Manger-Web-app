@@ -19,19 +19,19 @@ const mailSend=async(req,res)=>{
             await owner.save();
         }else{
             const task=await Task.findOne({owner:tokenPayload.userId})
-            let owner=await Task.findByIdAndUpdate(task._id,{
+            await Task.findByIdAndUpdate(task._id,{
                 tasks:req.body.tasks
             })
         }
 
-        let user=await User.findById(tokenPayload.userId).exec()
+        let user=await User.findById(tokenPayload.userId).exec();
         let task=await Task.findOne({owner:user._id});
 
         send_mail(task.tasks,user.email);
 
         res.status(200).send({status:"email sent"});
     }catch(err){
-        res.status(500).send("internal server error"+err)
+        res.status(500).send("internal server error"+err);
         console.log(err);
     }
 }

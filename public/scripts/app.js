@@ -62,7 +62,7 @@ const sendMial=()=>{
     });
 };
 //TODO: make time: 6 hours
-setInterval(sendMial,21600000);
+setInterval(sendMial, 6 * 60 * 60 * 1000);
 
 submitTxt.addEventListener("click",(event)=>{
     let val=textVal.value;

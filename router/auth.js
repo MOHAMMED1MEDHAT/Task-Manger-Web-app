@@ -17,7 +17,7 @@ router.post('/',uservalidator,async(req,res)=>{
 
         const token=user.getAuthToken(user._id);
         res.header('x-auth-token',token);
-        res.cookie('x-auth-token',token);
+        res.cookie('x-auth-token',token,{httpOnly:true});
         res.send({status:"Ok"});
     }catch(err){
         console.log(err)
