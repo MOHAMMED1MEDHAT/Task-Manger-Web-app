@@ -40,7 +40,7 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "/public/signup.html");
 });
 
-app.get("/reg", (req, res) => {
+app.get("/main", (req, res) => {
     res.sendFile("public/index.html");
 });
 
