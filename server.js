@@ -11,7 +11,7 @@ const cors = require("cors");
 const app = express();
 
 mongoose
-    .connect(process.env.LOCAL_CONNECTION_STRING, {
+    .connect(process.env.ATLAS_CONNECTION_STRING, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         dbName: "Task-Manger",
