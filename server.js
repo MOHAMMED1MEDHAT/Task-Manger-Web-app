@@ -4,13 +4,14 @@ const authRouter = require("./router/auth");
 const mailRouter = require("./router/mailingApi");
 
 const bodyParser = require("body-parser");
+const path = require("path");
 const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
 const app = express();
 
 mongoose
-    .connect(process.env.ATLAS_CONNECTION_STRING, {
+    .connect(process.env.LOCAL_CONNECTION_STRING, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         dbName: "Task-Manger",
@@ -20,7 +21,15 @@ mongoose
     })
     .catch((err) => console.log("error occured" + err));
 
-app.use(express.static("public"));
+// app.use(express.static("public"));
+app.use(
+    express.static(path.join(__dirname, "public"), {
+        setHeaders: function (res, path, stat) {
+            res.set("Content-Type", "application/javascript");
+        },
+    })
+);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -41,7 +50,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/main", (req, res) => {
-    res.sendFile(__dirname + "./public/index.html");
+    res.sendFile(__dirname + "/public/main.html");
 });
 
 app.get("/login", (req, res) => {
