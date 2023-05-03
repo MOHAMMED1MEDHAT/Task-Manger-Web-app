@@ -15,6 +15,11 @@ const sendData = async (url = "", data = {}) => {
         .then((response) => response.json())
         .then((data) => {
             console.log("Success:", data);
+            if (data.status == "Ok") {
+                window.location.assign(newUrl);
+            } else {
+                console.log(data.status);
+            }
         })
         .catch((error) => {
             console.error("Error:", error);
@@ -22,17 +27,16 @@ const sendData = async (url = "", data = {}) => {
     // alert(response.json());
 };
 
-register_btn.addEventListener("click", (event) => {
-    const url = window.location.href;
-    const newUrl = url + "main";
+register_btn.addEventListener("click", async (event) => {
+    const url = window.location.href + "reg";
+    const newUrl = url.replace("reg", "main");
 
-    console.log(email.value, password.value);
+    console.log(email.value, password.value, url, newUrl);
 
-    sendData(url, {
+    await sendData(url, {
         email: email.value,
         password: password.value,
     });
     // console.log(event);
-    window.location.assign(newUrl);
-    // console.log(window.location.hre);
+    console.log(window.location.hre);
 });
